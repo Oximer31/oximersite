@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Главная страница</title>
+</head>
+<body>
+    <!-- Добавляем заголовок h1 -->
+    <h1 id="pageTitle">Главная страница</h1>
+    <!-- Добавляем кнопку -->
+    <button onclick="changeTitle()">Нажми меня!</button>
+
+    <script>
+        // JavaScript код для изменения текста заголовка h1
+        function changeTitle() {
+            var pageTitleElement = document.getElementById("pageTitle");
+            pageTitleElement.textContent = "Ну и нахуй ты нажал эту кнопку";
+        }
+    </script>
+</body>
+</html>
