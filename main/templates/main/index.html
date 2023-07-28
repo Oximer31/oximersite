@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,13 +11,69 @@
     <!-- Добавляем заголовок h1 -->
     <h1 id="pageTitle">Главная страница</h1>
     <!-- Добавляем кнопку -->
-    <button onclick="changeTitle()">Нажми меня!</button>
+    <button id="clickButton" onclick="changeTitle()">Нажми меня!</button>
+
+    <!-- Добавляем поле ввода и кнопку "Отправить" -->
+    <div id="inputContainer" style="display: none;">
+        <input type="text" id="inputText" placeholder="Введите текст">
+        <button onclick="updateTitle()">Отправить</button>
+    </div>
 
     <script>
-        // JavaScript код для изменения текста заголовка h1
+        var clickCount = 0; // Инициализируем счетчик нажатий
+
         function changeTitle() {
+            clickCount++; // Увеличиваем счетчик при каждом нажатии
+
             var pageTitleElement = document.getElementById("pageTitle");
-            pageTitleElement.textContent = "Ну и нахуй ты нажал эту кнопку";
+
+            // Проверяем количество нажатий и изменяем текст в соответствии с ним
+            if (clickCount === 1) {
+                pageTitleElement.textContent = "Тебе делать нехуй нажимать на рандомные кнопки? Ну нажми еще раз";
+            } else if (clickCount === 2) {
+                pageTitleElement.textContent = "Гений, рандомную кнопку на нн сайте хуярит блять";
+            } else if (clickCount === 3) {
+                pageTitleElement.textContent = "Ты нажал на кнопку уже три раза блять, что тобой движет -_- Будешь дальше нажимать?";
+            } else if (clickCount === 4) {
+                pageTitleElement.textContent = "4 раза чел";
+            } else if (clickCount < 50) {
+                pageTitleElement.textContent = clickCount + " раза чел";
+
+            } else if (clickCount > 50) {
+                pageTitleElement.textContent = clickCount + " раза чел";
+
+            } else if (clickCount === 50) {
+                pageTitleElement.textContent = "Ну и нахуй ты жмешь на эту кнопку блять";
+
+                var inputContainer = document.getElementById("inputContainer");
+                inputContainer.style.display = "block"; // Показываем поле ввода и кнопку "Отправить"
+
+                var clickButton = document.getElementById("clickButton");
+                clickButton.remove(); // Удаляем кнопку "Нажми меня!"
+            }
+        }
+
+        function updateTitle() {
+            // Получаем значение из поля ввода
+            var userInput = document.getElementById("inputText").value;
+
+            // Обновляем заголовок (h1) текстом, введенным пользователем
+            var pageTitleElement = document.getElementById("pageTitle");
+            pageTitleElement.textContent = "Ты ввел " + userInput + ", но если честно мне абсолютно поебать на твой ответ. Хочешь, дальше хуярь по этой кнопке";
+
+            // Показываем кнопку "Нажми меня!" снова
+            var clickButton = document.createElement("button");
+            clickButton.setAttribute("id", "clickButton");
+            clickButton.setAttribute("onclick", "changeTitle()");
+            clickButton.textContent = "Нажми меня!";
+            document.body.appendChild(clickButton);
+
+            // Скрываем контейнер с полем ввода после обновления заголовка
+            var inputContainer = document.getElementById("inputContainer");
+            inputContainer.style.display = "none";
+
+            // Сбрасываем счетчик нажатий на 0
+            clickCount = 51;
         }
     </script>
 </body>
